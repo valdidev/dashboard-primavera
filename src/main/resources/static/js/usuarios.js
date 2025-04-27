@@ -5,13 +5,34 @@ $(document).ready(function() {
 });
 
 async function cargarUsuarios() {
-    const response = await fetch('usuario', {
+    const response = await fetch('usuarios', {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         }
     });
+
     const usuarios = await response.json();
-    console.log(usuarios);
+
+    let listaUsuariosHtml = '';
+
+    for(let usuario of usuarios) {
+        let usuarioHtml = `
+        <tr>
+            <td>${usuario.id}</td>
+            <td>${usuario.nombre}</td>
+            <td>${usuario.email}</td>
+            <td>${usuario.telefono}</td>
+            <td>
+                <a href="#" class="btn btn-danger btn-circle">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+        `
+        listaUsuariosHtml += usuarioHtml;
+    }
+
+    document.querySelector('#usuarios tbody').outerHTML = listaUsuariosHtml;
 }
