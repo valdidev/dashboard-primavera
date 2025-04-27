@@ -2,12 +2,13 @@ package com.cursolucasmoy.cursosb.controllers;
 
 import com.cursolucasmoy.cursosb.models.Usuario;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class UsuarioController {
 
-    @GetMapping("/usuario")
+    @RequestMapping(value = "usuario/{id}")
     public Usuario recibirUsuario()
     {
         Usuario usuario = new Usuario();
