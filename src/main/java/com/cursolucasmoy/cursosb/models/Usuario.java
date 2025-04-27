@@ -2,11 +2,20 @@ package com.cursolucasmoy.cursosb.models;
 
 public class Usuario {
 
+    private long id;
     private String nombre;
     private String apellidos;
     private String email;
     private String telefono;
     private String password;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getNombre() {
         return nombre;
