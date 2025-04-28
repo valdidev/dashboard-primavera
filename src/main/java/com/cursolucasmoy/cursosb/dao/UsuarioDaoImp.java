@@ -13,8 +13,10 @@ import java.util.List;
 public class UsuarioDaoImp implements UsuarioDao {
     @PersistenceContext
     private EntityManager entityManager;
+
     @Override
     public List<Usuario> getUsuarios() {
-        return null;
+        String query = "FROM Usuario";
+        return entityManager.createQuery(query).getResultList();
     }
 }
