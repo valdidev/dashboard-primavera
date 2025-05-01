@@ -1,24 +1,24 @@
 // Call the dataTables jQuery plugin
-$(document).ready(function() {
+$(document).ready(function () {
   cargarUsuarios();
-  $('#usuarios').DataTable();
+  $("#usuarios").DataTable();
 });
 
 async function cargarUsuarios() {
-    const response = await fetch('usuarios', {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
-    });
+  const response = await fetch("usuarios", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
 
-    const usuarios = await response.json();
+  const usuarios = await response.json();
 
-    let listaUsuariosHtml = '';
+  let listaUsuariosHtml = "";
 
-    for(let usuario of usuarios) {
-        let usuarioHtml = `
+  for (let usuario of usuarios) {
+    let usuarioHtml = `
         <tr>
             <td>${usuario.id}</td>
             <td>${usuario.nombre}</td>
@@ -31,11 +31,26 @@ async function cargarUsuarios() {
             </td>
         </tr>
         `;
-        listaUsuariosHtml += usuarioHtml;
-    }
+    listaUsuariosHtml += usuarioHtml;
+  }
 
-    document.querySelector('#usuarios tbody').outerHTML = `<tbody>${listaUsuariosHtml}</tbody>`;
+  document.querySelector(
+    "#usuarios tbody"
+  ).outerHTML = `<tbody>${listaUsuariosHtml}</tbody>`;
 }
 
-function eliminarUsuario(id) {
+async function eliminarUsuario(id) {
+  if (!confirm("¿Eliminar definitivamente al usuario?")) {
+    return;
+  }
+
+  await fetch("usuario/" + id, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+
+  location.reload();
 }
