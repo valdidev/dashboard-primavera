@@ -1,6 +1,8 @@
 package com.cursolucasmoy.cursosb.dao;
 
 import com.cursolucasmoy.cursosb.models.Usuario;
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -27,13 +29,18 @@ public class UsuarioDaoImp implements UsuarioDao {
 
     @Override
     public boolean sonValidasCredenciales(Usuario usuario) {
-        String query = "FROM Usuario WHERE email = :email AND password = :password";
+        String query = "FROM Usuario WHERE email = :email";
         List<Usuario> usuarios = entityManager.createQuery(query)
                 .setParameter("email", usuario.getEmail())
-                .setParameter("password", usuario.getPassword())
                 .getResultList();
+        if (usuarios.isEmpty()) {
+            return false;
+        }
 
-        return !usuarios.isEmpty();
+        String passwordHashed = usuarios.get(0).getPassword();
+
+        Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+        return argon2.verify(passwordHashed, usuario.getPassword());
     }
 
     @Override
