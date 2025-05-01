@@ -25,14 +25,17 @@ async function cargarUsuarios() {
             <td>${usuario.email}</td>
             <td>${usuario.telefono}</td>
             <td>
-                <a href="#" class="btn btn-danger btn-circle">
+                <a href="#" onclick="eliminarUsuario(${usuario.id})" class="btn btn-danger btn-circle">
                     <i class="fas fa-trash"></i>
                 </a>
             </td>
         </tr>
-        `
+        `;
         listaUsuariosHtml += usuarioHtml;
     }
 
-    document.querySelector('#usuarios tbody').outerHTML = listaUsuariosHtml;
+    document.querySelector('#usuarios tbody').outerHTML = `<tbody>${listaUsuariosHtml}</tbody>`;
+}
+
+function eliminarUsuario(id) {
 }

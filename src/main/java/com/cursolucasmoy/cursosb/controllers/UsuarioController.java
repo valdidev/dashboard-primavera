@@ -3,9 +3,7 @@ package com.cursolucasmoy.cursosb.controllers;
 import com.cursolucasmoy.cursosb.dao.UsuarioDao;
 import com.cursolucasmoy.cursosb.models.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,6 +20,14 @@ public class UsuarioController {
     {
         return usuarioDao.getUsuarios();
     }
+
+    @DeleteMapping("usuario/{id}")
+    public void eliminar(@PathVariable Long id) {
+        usuarioDao.eliminar(id);
+    }
+
+
+    ////////
 
     @GetMapping("/test")
     public String test() {
