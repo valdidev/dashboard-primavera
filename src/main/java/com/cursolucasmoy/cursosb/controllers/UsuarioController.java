@@ -17,8 +17,14 @@ public class UsuarioController {
     @Autowired
     private UsuarioDao usuarioDao;
 
-    @GetMapping("usuarios")
-    public List<Usuario> listaUsuarios() {
+   @GetMapping("usuarios")
+    public List<Usuario> listaUsuarios()
+    {
         return usuarioDao.getUsuarios();
+    }
+
+    @GetMapping("/test")
+    public String test() {
+        return "OK";
     }
 }
