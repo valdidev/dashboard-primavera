@@ -15,5 +15,11 @@ async function iniciarSesion() {
     body: JSON.stringify(body),
   });
 
-  const respuesta = await response.json();
+  const respuesta = await response.text();
+  if (respuesta === "OK") {
+    window.location.href = "index.html";
+  } else {
+    alert("Usuario o contraseña incorrectos");
+    location.reload();
+  }
 }
