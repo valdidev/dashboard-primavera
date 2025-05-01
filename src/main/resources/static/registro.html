@@ -50,7 +50,7 @@
                       <input
                         type="text"
                         class="form-control form-control-user"
-                        id="regAPellido"
+                        id="regApellidos"
                         placeholder="Apellidos"
                       />
                     </div>
@@ -76,7 +76,7 @@
                       <input
                         type="password"
                         class="form-control form-control-user"
-                        id="regRepeatPassword"
+                        id="regRepetirPassword"
                         placeholder="Repetir contraseña"
                       />
                     </div>
@@ -90,7 +90,8 @@
                     />
                   </div>
                   <a
-                    href="login.html"
+                    onclick="registrarUsuario()"
+                    href="#"
                     class="btn btn-primary btn-user btn-block"
                   >
                     Registrarse
@@ -110,14 +111,13 @@
       </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    <script src="js/registro.js"></script>
   </body>
 </html>

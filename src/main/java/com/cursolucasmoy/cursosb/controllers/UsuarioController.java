@@ -21,6 +21,11 @@ public class UsuarioController {
         return usuarioDao.getUsuarios();
     }
 
+    @PostMapping("usuario")
+    public void registro(@RequestBody Usuario usuario) {
+        usuarioDao.registrar(usuario);
+    }
+
     @DeleteMapping("usuario/{id}")
     public void eliminar(@PathVariable Long id) {
         usuarioDao.eliminar(id);
