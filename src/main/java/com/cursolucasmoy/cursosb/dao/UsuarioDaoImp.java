@@ -26,6 +26,17 @@ public class UsuarioDaoImp implements UsuarioDao {
     }
 
     @Override
+    public boolean sonValidasCredenciales(Usuario usuario) {
+        String query = "FROM Usuario WHERE email = :email AND password = :password";
+        List<Usuario> usuarios = entityManager.createQuery(query)
+                .setParameter("email", usuario.getEmail())
+                .setParameter("password", usuario.getPassword())
+                .getResultList();
+
+        return !usuarios.isEmpty();
+    }
+
+    @Override
     public void eliminar(Long id) {
         Usuario usuario = entityManager.find(Usuario.class, id);
         entityManager.remove(usuario);
