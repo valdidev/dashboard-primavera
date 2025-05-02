@@ -1,21 +1,35 @@
-// Call the dataTables jQuery plugin
 $(document).ready(function () {
   cargarUsuarios();
   $("#usuarios").DataTable();
 });
 
 async function cargarUsuarios() {
-  const response = await fetch("api/usuarios", {
-    method: "GET",
+  const response = await fetch("api/usuarios", crearRequestInfo("GET"));
+  const usuarios = await response.json();
+  rellenarTabla(usuarios);
+}
+
+async function eliminarUsuario(id) {
+  if (!confirm("¿Eliminar definitivamente al usuario?")) {
+    return;
+  }
+
+  await fetch("api/usuario/" + id, crearRequestInfo("DELETE"));
+  location.reload();
+}
+
+function crearRequestInfo(metodo) {
+  return {
+    method: metodo,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: "Bearer " + localStorage.getItem("token"),
     },
-  });
+  };
+}
 
-  const usuarios = await response.json();
-
+function rellenarTabla(usuarios) {
   let listaUsuariosHtml = "";
 
   for (let usuario of usuarios) {
@@ -38,21 +52,4 @@ async function cargarUsuarios() {
   document.querySelector(
     "#usuarios tbody"
   ).outerHTML = `<tbody>${listaUsuariosHtml}</tbody>`;
-}
-
-async function eliminarUsuario(id) {
-  if (!confirm("¿Eliminar definitivamente al usuario?")) {
-    return;
-  }
-
-  await fetch("api/usuario/" + id, {
-    method: "DELETE",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("token"),
-    },
-  });
-
-  location.reload();
 }
