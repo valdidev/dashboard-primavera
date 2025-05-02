@@ -5,7 +5,7 @@ $(document).ready(function () {
 });
 
 async function cargarUsuarios() {
-  const response = await fetch("usuarios", {
+  const response = await fetch("api/usuarios", {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -45,7 +45,7 @@ async function eliminarUsuario(id) {
     return;
   }
 
-  await fetch("usuario/" + id, {
+  await fetch("api/usuario/" + id, {
     method: "DELETE",
     headers: {
       Accept: "application/json",

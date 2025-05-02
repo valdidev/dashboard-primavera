@@ -16,7 +16,7 @@ import java.util.function.Function;
 public class JWTUtil {
 
     @Value("${jwt.secret}")
-    private String secret;  // Debe ser una cadena Base64 segura
+    private String secret;
 
     @Value("${jwt.issuer}")
     private String issuer;
@@ -25,17 +25,48 @@ public class JWTUtil {
     private long ttlMillis;
 
     public String create(String id, String subject) {
-        // 1. Convertir la clave secreta (Base64) a una clave HMAC-SHA256
         SecretKey key = Keys.hmacShaKeyFor(secret.getBytes());
-
-        // 2. Generar el token JWT
         return Jwts.builder()
-                .setId(id)                      // ID del usuario (puede ser su ID de BD)
-                .setSubject(subject)            // Email o username
-                .setIssuer(issuer)              // Quién emite el token
-                .setIssuedAt(new Date())        // Fecha de creación
-                .setExpiration(new Date(System.currentTimeMillis() + ttlMillis))  // Fecha de expiración
-                .signWith(key, SignatureAlgorithm.HS256)  // Firma con clave secreta
-                .compact();                     // Genera el token como String
+                .setId(id)
+                .setSubject(subject)
+                .setIssuer(issuer)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + ttlMillis))
+                .signWith(key, SignatureAlgorithm.HS256)
+                .compact();
+    }
+
+    // Nueva función para verificar el token
+    public boolean verifyToken(String token) {
+        try {
+            SecretKey key = Keys.hmacShaKeyFor(secret.getBytes());
+
+            // Parsear el token y verificar su validez
+            Jwts.parserBuilder()
+                    .setSigningKey(key)
+                    .requireIssuer(issuer) // Verifica que el issuer coincida
+                    .build()
+                    .parseClaimsJws(token);
+
+            // Si no lanza excepción, el token es válido
+            return true;
+        } catch (Exception e) {
+            // Cualquier error (firma inválida, token expirado, malformado, etc.) indica token inválido
+            return false;
+        }
+    }
+
+    // Función auxiliar para obtener los claims del token (opcional, si necesitas acceder a los datos)
+    public Claims getClaims(String token) {
+        try {
+            SecretKey key = Keys.hmacShaKeyFor(secret.getBytes());
+            return Jwts.parserBuilder()
+                    .setSigningKey(key)
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody();
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
