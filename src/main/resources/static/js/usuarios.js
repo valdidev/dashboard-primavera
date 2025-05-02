@@ -1,6 +1,7 @@
 $(document).ready(function () {
-  cargarUsuarios();
   $("#usuarios").DataTable();
+  cargarUsuarios();
+  rellenarDatosUsuario();
 });
 
 async function cargarUsuarios() {
@@ -52,4 +53,9 @@ function rellenarTabla(usuarios) {
   document.querySelector(
     "#usuarios tbody"
   ).outerHTML = `<tbody>${listaUsuariosHtml}</tbody>`;
+}
+
+function rellenarDatosUsuario() {
+  document.getElementById("txtUsuarioEmail").outerHTML =
+    localStorage.getItem("email") ?? "Invitado";
 }
