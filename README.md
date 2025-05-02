@@ -1,6 +1,10 @@
 User CRUD Application (Java Spring Boot)
+
 Descripción
-Esta es una aplicación para gestionar usuarios mediante operaciones CRUD (Crear, Leer, Actualizar, Eliminar). Desarrollada con Java y Spring Boot, permite administrar información de usuarios de forma eficiente.
+
+Esta es una aplicación para gestionar usuarios mediante operaciones CRUD (Crear, Leer, Actualizar, Eliminar). 
+Desarrollada con Java y Spring Boot, permite administrar información de usuarios de forma eficiente.
+
 Características
 
 Crear nuevos usuarios.
@@ -24,11 +28,9 @@ Opcional: Base de datos externa (MySQL/PostgreSQL)
 
 Instalación
 
-Clona el repositorio:git clone https://github.com/tu-usuario/nombre-repositorio.git
-
+Clona el repositorio
 
 Navega al directorio del proyecto:cd nombre-repositorio
-
 
 Configura las variables de entorno en src/main/resources/application.properties:spring.datasource.url=jdbc:h2:mem:testdb
 spring.datasource.driverClassName=org.h2.Driver
@@ -48,16 +50,15 @@ Uso
 
 Accede a la API en http://localhost:8080.
 
-GET /api/usuarios: Listar todos los usuarios.
-GET /api/usuario/{id}: Obtener un usuario por ID.
-POST /api/users: Crear un usuario (ejemplo de cuerpo JSON):{
+- GET /api/usuarios: Listar todos los usuarios.
+- GET /api/usuario/{id}: Obtener un usuario por ID.
+- POST /api/users: Crear un usuario (ejemplo de cuerpo JSON):{
   "name": "Juan Pérez",
   "email": "juan@example.com"
 }
 
-
-PUT /api/usuario/{id}: Actualizar un usuario.
-DELETE /api/usuario/{id}: Eliminar un usuario.
+- PUT /api/usuario/{id}: Actualizar un usuario.
+- DELETE /api/usuario/{id}: Eliminar un usuario.
 
 
 Para pruebas, usa herramientas como Postman o cURL.
