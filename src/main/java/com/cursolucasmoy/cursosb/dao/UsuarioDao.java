@@ -9,7 +9,7 @@ public interface UsuarioDao {
 
     void registrar(Usuario usuario);
 
-    boolean sonValidasCredenciales(Usuario usuario);
+    Usuario usuarioPorCredenciales(Usuario usuario);
 
     void eliminar(Long id);
 }

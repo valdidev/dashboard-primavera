@@ -15,64 +15,27 @@ import java.util.function.Function;
 @Component
 public class JWTUtil {
 
-    @Value("${security.jwt.secret}")
-    private String secret;
+    @Value("${jwt.secret}")
+    private String secret;  // Debe ser una cadena Base64 segura
 
-    @Value("${security.jwt.issuer}")
+    @Value("${jwt.issuer}")
     private String issuer;
 
-    @Value("${security.jwt.ttlMillis}")
+    @Value("${jwt.ttl}")
     private long ttlMillis;
 
-    private SecretKey getSigningKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(secret);
-        return Keys.hmacShaKeyFor(keyBytes);
-    }
-
     public String create(String id, String subject) {
-        Date now = new Date();
-        Date expiration = new Date(now.getTime() + ttlMillis);
+        // 1. Convertir la clave secreta (Base64) a una clave HMAC-SHA256
+        SecretKey key = Keys.hmacShaKeyFor(secret.getBytes());
 
+        // 2. Generar el token JWT
         return Jwts.builder()
-                .setId(id)
-                .setSubject(subject)
-                .setIssuer(issuer)
-                .setIssuedAt(now)
-                .setExpiration(expiration)
-                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
-                .compact();
-    }
-
-    public String getValue(String jwt) {
-        return getClaim(jwt, Claims::getSubject);
-    }
-
-    public String getKey(String jwt) {
-        return getClaim(jwt, Claims::getId);
-    }
-
-    public boolean validateToken(String token) {
-        try {
-            Jwts.parserBuilder()
-                    .setSigningKey(getSigningKey())
-                    .build()
-                    .parseClaimsJws(token);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    private <T> T getClaim(String token, Function<Claims, T> claimsResolver) {
-        final Claims claims = getAllClaims(token);
-        return claimsResolver.apply(claims);
-    }
-
-    private Claims getAllClaims(String token) {
-        return Jwts.parserBuilder()
-                .setSigningKey(getSigningKey())
-                .build()
-                .parseClaimsJws(token)
-                .getBody();
+                .setId(id)                      // ID del usuario (puede ser su ID de BD)
+                .setSubject(subject)            // Email o username
+                .setIssuer(issuer)              // Quién emite el token
+                .setIssuedAt(new Date())        // Fecha de creación
+                .setExpiration(new Date(System.currentTimeMillis() + ttlMillis))  // Fecha de expiración
+                .signWith(key, SignatureAlgorithm.HS256)  // Firma con clave secreta
+                .compact();                     // Genera el token como String
     }
 }

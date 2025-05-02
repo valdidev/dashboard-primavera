@@ -17,9 +17,8 @@ public class UsuarioController {
     @Autowired
     private UsuarioDao usuarioDao;
 
-   @GetMapping("usuarios")
-    public List<Usuario> listaUsuarios()
-    {
+    @GetMapping("usuarios")
+    public List<Usuario> listaUsuarios() {
         return usuarioDao.getUsuarios();
     }
 
@@ -36,13 +35,5 @@ public class UsuarioController {
     @DeleteMapping("usuario/{id}")
     public void eliminar(@PathVariable Long id) {
         usuarioDao.eliminar(id);
-    }
-
-
-    ////////
-
-    @GetMapping("/test")
-    public String test() {
-        return "OK";
     }
 }

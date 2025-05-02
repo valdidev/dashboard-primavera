@@ -10,6 +10,7 @@ async function cargarUsuarios() {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
   });
 
@@ -49,6 +50,7 @@ async function eliminarUsuario(id) {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
   });
 
