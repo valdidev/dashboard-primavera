@@ -2,6 +2,7 @@ package com.cursolucasmoy.cursosb.controllers;
 
 import com.cursolucasmoy.cursosb.dao.UsuarioDao;
 import com.cursolucasmoy.cursosb.models.Usuario;
+import com.cursolucasmoy.cursosb.utils.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +13,9 @@ public class AuthController {
 
     @Autowired
     private UsuarioDao usuarioDao;
+
+    @Autowired
+    private JWTUtil jwtUtil;
 
     @PostMapping("login")
     public String login(@RequestBody Usuario usuario) {

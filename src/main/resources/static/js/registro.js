@@ -24,6 +24,6 @@ async function registrarUsuario() {
     },
     body: JSON.stringify(body),
   });
-
-  await response.json();
+  
+  window.location.href = "login.html";
 }
