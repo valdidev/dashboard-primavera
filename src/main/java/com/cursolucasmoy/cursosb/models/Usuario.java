@@ -1,37 +1,27 @@
 package com.cursolucasmoy.cursosb.models;
 
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Entity @Table(name = "usuarios")
-@ToString @EqualsAndHashCode
+@Data
 public class Usuario {
 
-    @Id @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter
+    @Id @Column(name = "id") @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "nombre")
-    @Getter @Setter
     private String nombre;
 
     @Column(name = "apellidos")
-    @Getter @Setter
     private String apellidos;
 
     @Column(name = "email")
-    @Getter @Setter
     private String email;
 
     @Column(name = "telefono")
-    @Getter @Setter
     private String telefono;
 
     @Column(name = "password")
-    @Getter @Setter
     private String password;
 }
