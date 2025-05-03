@@ -2,6 +2,7 @@ package com.cursolucasmoy.cursosb.controllers;
 
 import com.cursolucasmoy.cursosb.dao.UsuarioDao;
 import com.cursolucasmoy.cursosb.models.Usuario;
+import com.cursolucasmoy.cursosb.services.UsuarioService;
 import com.cursolucasmoy.cursosb.utils.JWTUtil;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
@@ -16,7 +17,7 @@ import java.util.List;
 public class UsuarioController {
 
     @Autowired
-    private UsuarioDao usuarioDao;
+    private UsuarioService usuarioSE;
 
     @Autowired
     private JWTUtil jwtUtil;
@@ -26,7 +27,7 @@ public class UsuarioController {
         if (!validarToken(authHeader)) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
-        return ResponseEntity.ok(usuarioDao.getUsuarios());
+        return ResponseEntity.ok(usuarioSE.listado());
     }
 
     @DeleteMapping("api/usuario/{id}")
@@ -34,7 +35,7 @@ public class UsuarioController {
         if (!validarToken(authHeader)) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token inválido");
         }
-        usuarioDao.eliminar(id);
+        usuarioSE.eliminar(id);
         return ResponseEntity.ok("Usuario eliminado correctamente");
     }
 
