@@ -91,15 +91,17 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<!-- Reemplaza tus dependencias de Flyway con estas -->
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
+			<version>9.22.3</version> <!-- Versión compatible con Spring Boot 3.4.5 -->
 		</dependency>
 
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-mysql</artifactId>
-			<version>9.22.3</version> <!-- Específico para MySQL -->
+			<version>9.22.3</version>
 		</dependency>
 
 	</dependencies>
