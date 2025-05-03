@@ -53,4 +53,9 @@ public class UsuarioDaoImp implements UsuarioDao {
         Usuario usuario = entityManager.find(Usuario.class, id);
         entityManager.remove(usuario);
     }
+
+    @Override
+    public void nuevaFnInterfaces() {
+
+    }
 }

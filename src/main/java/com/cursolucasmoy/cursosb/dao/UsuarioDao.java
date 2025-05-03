@@ -12,4 +12,8 @@ public interface UsuarioDao {
     Usuario usuarioPorCredenciales(Usuario usuario);
 
     void eliminar(Long id);
+
+    default void nuevaFnInterfaces() {
+        System.out.println("hola");
+    }
 }
