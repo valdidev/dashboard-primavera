@@ -1,10 +1,8 @@
-$(document).ready(function () {
-  $("#usuarios").DataTable();
-  cargarUsuarios();
-  rellenarDatosUsuario();
-});
+cargarUsuarios();
+rellenarDatosUsuario();
 
 async function cargarUsuarios() {
+  console.log("cargando usuarios...");
   const response = await fetch("api/usuarios", crearRequestInfo("GET"));
   const usuarios = await response.json();
   rellenarTabla(usuarios);
@@ -41,8 +39,8 @@ function rellenarTabla(usuarios) {
             <td>${usuario.email}</td>
             <td>${usuario.telefono}</td>
             <td>
-                <a href="#" onclick="eliminarUsuario(${usuario.id})" class="btn btn-danger btn-circle">
-                    <i class="fas fa-trash"></i>
+                <a href="#" onclick="eliminarUsuario(${usuario.id})" class="delete-button">
+                    Eliminar
                 </a>
             </td>
         </tr>
