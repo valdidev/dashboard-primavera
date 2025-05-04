@@ -24,6 +24,6 @@ async function registrarUsuario() {
     },
     body: JSON.stringify(body),
   });
-  
+
   window.location.href = "login.html";
 }
