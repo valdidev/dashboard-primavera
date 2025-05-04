@@ -26,7 +26,7 @@ body.users-bg {
   display: flex;
   flex-direction: column; /* Stack title and table vertically */
   align-items: center;
-  justify-content: center;
+  padding: 2rem 0; /* Add padding to avoid content touching edges */
 }
 
 /* Table title styling */
@@ -34,13 +34,14 @@ body.users-bg {
   color: #2f4f4f;
   font-weight: 700;
   font-size: 1.5rem;
-  margin: 2rem 0 1rem 0; /* Space above and below title */
+  margin: 0 0 2rem 0; /* Space below title only */
   text-align: center;
+  width: 100%; /* Ensure title spans full width for centering */
 }
 
 /* Table styling */
 .table-content {
-  padding: 0 3rem 3rem 3rem; /* Adjusted padding to account for title */
+  padding: 0 3rem 3rem 3rem; /* Side and bottom padding */
   width: 100%;
   max-width: 1000px; /* Limit table width for centering */
 }
@@ -124,6 +125,6 @@ body.users-bg {
 
   .table-title {
     font-size: 1.3rem;
-    margin: 1.5rem 0 0.5rem 0;
+    margin: 0 0 1.5rem 0;
   }
 }
