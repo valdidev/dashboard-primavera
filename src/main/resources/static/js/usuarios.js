@@ -17,6 +17,12 @@ async function eliminarUsuario(id) {
   location.reload();
 }
 
+function cerrarSesion() {
+  localStorage.removeItem("token");
+  localStorage.removeItem("email");
+  window.location.href = "login.html";
+}
+
 function crearRequestInfo(metodo) {
   return {
     method: metodo,
@@ -54,6 +60,8 @@ function rellenarTabla(usuarios) {
 }
 
 function rellenarDatosUsuario() {
-  document.getElementById("txtUsuarioEmail").outerHTML =
-    localStorage.getItem("email") ?? "Invitado";
+  const userEmailElement = document.getElementById("userEmail");
+  if (userEmailElement) {
+    userEmailElement.textContent = localStorage.getItem("email") ?? "Invitado";
+  }
 }

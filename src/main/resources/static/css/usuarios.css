@@ -3,18 +3,55 @@ body.users-bg {
   background: #2e8b57;
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column; /* Allow header and content to stack */
   margin: 0;
   font-family: Arial, sans-serif;
   color: #2f4f4f;
 }
 
+/* Header styling */
+.users-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #228b22; /* Dark green to match palette */
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000; /* Ensure header stays above other content */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.user-email {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.logout-button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #8b0000; /* Dark red for logout action */
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #a52a2a; /* Lighter red on hover */
+}
+
 /* Container styling */
 .users-container {
-  padding: 3rem 0;
+  padding: 6rem 0 3rem 0; /* Increased top padding for header */
   max-width: 1100px; /* Consistent width */
   width: 100%;
+  margin: 0 auto; /* Center container */
 }
 
 /* Card styling */
@@ -26,7 +63,7 @@ body.users-bg {
   display: flex;
   flex-direction: column; /* Stack title and table vertically */
   align-items: center;
-  padding: 2rem 0; /* Add padding to avoid content touching edges */
+  padding: 2rem 0; /* Padding for content */
 }
 
 /* Table title styling */
@@ -106,7 +143,7 @@ body.users-bg {
 @media (max-width: 768px) {
   .users-container {
     max-width: 90%; /* Responsive width */
-    padding: 2rem 0;
+    padding: 5rem 0 2rem 0; /* Adjusted for header */
   }
 
   .users-table {
@@ -126,5 +163,18 @@ body.users-bg {
   .table-title {
     font-size: 1.3rem;
     margin: 0 0 1.5rem 0;
+  }
+
+  .users-header {
+    padding: 0.75rem;
+  }
+
+  .user-email {
+    font-size: 0.9rem;
+  }
+
+  .logout-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
   }
 }

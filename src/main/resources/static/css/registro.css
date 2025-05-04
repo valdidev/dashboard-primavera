@@ -97,14 +97,13 @@ body.register-bg {
 
 /* Links */
 .link {
-  color: #adff2f;
+  color: #3cb371;
   font-weight: 500;
   font-size: 0.9rem;
   text-decoration: none;
 }
 
 .link:hover {
-  color: #3cb371;
   text-decoration: underline;
 }
 
