@@ -1,0 +1,92 @@
+/* General body styling with darker spring green background */
+body.users-bg {
+  background: #2e8b57;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #2f4f4f;
+}
+
+/* Container styling */
+.users-container {
+  padding: 3rem 0;
+  max-width: 1100px; /* Consistent width */
+  width: 100%;
+}
+
+/* Card styling */
+.users-card {
+  border-radius: 15px;
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  min-height: 500px; /* Consistent height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Table styling */
+.table-content {
+  padding: 3rem; /* Consistent padding */
+  width: 100%;
+  max-width: 1000px; /* Limit table width for centering */
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+
+.users-table thead th {
+  background-color: #228b22;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 1rem;
+  text-align: left;
+}
+
+.users-table tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+.users-table tbody tr:hover {
+  background-color: #adff2f;
+}
+
+.users-table th,
+.users-table td {
+  border: 1px solid #3cb371;
+  padding: 0.75rem;
+  vertical-align: middle;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .users-card {
+    min-height: 400px; /* Adjusted height for smaller screens */
+  }
+
+  .table-content {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .users-container {
+    max-width: 90%; /* Responsive width */
+    padding: 2rem 0;
+  }
+
+  .users-table {
+    font-size: 0.9rem;
+  }
+
+  .users-table th,
+  .users-table td {
+    padding: 0.5rem;
+  }
+}
